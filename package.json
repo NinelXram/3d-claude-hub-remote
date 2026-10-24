@@ -1,0 +1,20 @@
+{
+  "name": "3d-claude-hub-remote",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "up": "node scripts/up.mjs",
+    "up:tailscale": "node scripts/up.mjs --tailscale",
+    "hooks:status": "npm --prefix examples/phase1-engine run -s bridge -- status",
+    "hooks:remove": "npm --prefix examples/phase1-engine run -s bridge -- uninstall",
+    "autostart": "node scripts/autostart.mjs",
+    "autostart:status": "node scripts/autostart.mjs status",
+    "autostart:logs": "node scripts/autostart.mjs logs",
+    "autostart:off": "node scripts/autostart.mjs uninstall"
+  }
+}

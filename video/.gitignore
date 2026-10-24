@@ -1,0 +1,8 @@
+node_modules/
+.stage/
+public/clips/
+public/music.wav
+out/
+.env*
+public/voice/
+public/sfx/

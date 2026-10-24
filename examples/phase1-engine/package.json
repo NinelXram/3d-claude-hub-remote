@@ -1,0 +1,39 @@
+{
+  "name": "ai-agent-world-phase1-engine",
+  "private": true,
+  "license": "MIT",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "World server, Claude Code hooks bridge and Sessions for 3D Claude Hub Remote, plus the deterministic simulation engine the 3D app mirrors.",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --no-warnings scripts/simulate.ts",
+    "demo": "node --experimental-strip-types --no-warnings scripts/demo.ts",
+    "typecheck": "tsc --noEmit",
+    "viewer": "node scripts/build-viewer.mjs",
+    "test:ws": "node --experimental-strip-types --no-warnings scripts/ws-test.ts",
+    "server": "node --experimental-strip-types --no-warnings server/main.ts",
+    "replay": "node --experimental-strip-types --no-warnings scripts/replay-hooks.ts",
+    "bridge:settings": "node scripts/bridge-settings.mjs",
+    "test:live": "node --experimental-strip-types --no-warnings scripts/live-test.ts",
+    "bridge": "node scripts/bridge-install.mjs",
+    "test:install": "node scripts/bridge-install-test.mjs",
+    "live": "node scripts/live.mjs",
+    "test:sound": "node --experimental-strip-types --no-warnings scripts/sound-test.ts",
+    "test:sessions": "node --experimental-strip-types --no-warnings scripts/sessions-test.ts",
+    "test:session-files": "node --experimental-strip-types --no-warnings scripts/session-files-test.ts",
+    "test:security": "node --experimental-strip-types --no-warnings scripts/security-test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/ws": "^8.18.2",
+    "esbuild": "^0.25.12",
+    "typescript": "~5.9.3"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.292",
+    "ws": "^8.18.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "office-demo": {
+    "camera:Overview": 0,
+    "camera:Development": 11.122,
+    "camera:Collaboration": 22.197
+  },
+  "office-sprint": {},
+  "sessions-desktop": {
+    "open:shop-api": 5.003,
+    "back": 12.145,
+    "open:web-dashboard": 13.732
+  },
+  "phone-remote": {
+    "open": 2.501,
+    "attach": 5.63,
+    "type": 6.846,
+    "send": 9.912,
+    "ask": 14.381,
+    "allow": 16.881,
+    "reply": 19.828
+  }
+}

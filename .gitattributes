@@ -1,0 +1,2 @@
+# Shell scripts run in sh/bash (Git Bash on Windows) and break with CRLF line endings.
+*.sh text eol=lf

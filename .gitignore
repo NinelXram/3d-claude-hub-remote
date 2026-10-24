@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+# Local secrets and logs: tokens, API keys, recorded sessions (they hold prompts verbatim).
+.env
+.env.*
+!.env.example
+*.log
+.aaw/
+*.jsonl.rec
+# Scratch space of AI coding agents.
+.superpowers/

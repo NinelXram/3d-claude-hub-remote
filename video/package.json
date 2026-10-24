@@ -1,0 +1,47 @@
+{
+  "name": "3d-claude-hub-remote-video",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "check": "node --experimental-strip-types --no-warnings scripts/check-copy.ts",
+    "stage": "node --experimental-strip-types --no-warnings stage/server.ts",
+    "test:stage": "node --experimental-strip-types --no-warnings stage/stage-test.ts",
+    "screenshot": "node --experimental-strip-types --no-warnings stage/make-screenshot.ts",
+    "capture": "node --experimental-strip-types --no-warnings capture/capture.ts",
+    "test:guards": "node --experimental-strip-types --no-warnings capture/guards-test.ts",
+    "music": "node --experimental-strip-types --no-warnings scripts/make-music.ts",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Intro out/3d-workflow-intro-vi.mp4 --codec h264 --crf 18",
+    "stills": "node --experimental-strip-types --no-warnings scripts/stills.ts",
+    "check:render": "node --experimental-strip-types --no-warnings scripts/check-render.ts",
+    "make": "npm run check && npm run music && npm run sfx && npm run voice && npm run capture && npm run render && npm run check:voice -- --require-audio && npm run check:sound && npm run check:render",
+    "typecheck": "tsc --noEmit -p .",
+    "test:specs": "node --experimental-strip-types --no-warnings capture/specs-test.ts",
+    "test": "npm run -s check && npm run -s check:voice && npm run -s check:sound && npm run -s test:specs && npm run -s test:guards && npm run -s test:stage && npm run -s typecheck",
+    "azure:setup": "node --experimental-strip-types --no-warnings scripts/azure-setup.ts",
+    "voice": "node --experimental-strip-types --no-warnings scripts/make-voice.ts",
+    "sfx": "node --experimental-strip-types --no-warnings scripts/make-sfx.ts",
+    "check:voice": "node --experimental-strip-types --no-warnings scripts/check-voice.ts",
+    "check:sound": "node --experimental-strip-types --no-warnings scripts/check-sound.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.538",
+    "@remotion/google-fonts": "^4.0.538",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.538",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@azure/identity": "^4.14.0",
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/ws": "^8.18.2",
+    "typescript": "^7.0.2"
+  }
+}

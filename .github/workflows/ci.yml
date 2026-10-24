@@ -1,0 +1,82 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  server:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: examples/phase1-engine
+        # Git Bash on Windows, like Claude Code uses for hooks.
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run test:ws
+      - run: npm run test:live
+      - run: npm run test:install
+      - run: npm run test:sound
+      - run: npm run test:sessions
+      - run: npm run test:session-files
+      - run: npm run test:security
+      - run: npm run viewer
+      - name: Black-box evaluation of the engine
+        working-directory: .
+        run: node --experimental-strip-types --no-warnings eval/phase1/evaluate.ts examples/phase1-engine
+
+  app:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: app
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Black-box evaluation of the app engine
+        working-directory: .
+        run: node --experimental-strip-types --no-warnings eval/phase1/evaluate.ts app
+
+  video:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: video
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Server dependencies (the stage server reuses them)
+        working-directory: examples/phase1-engine
+        run: npm install --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
+      - run: npm run check
+      - run: npm run check:voice
+      - run: npm run check:sound
+      - run: npm run test:specs
+      - run: npm run test:stage
+      - run: npm run typecheck
