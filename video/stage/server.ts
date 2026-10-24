@@ -40,7 +40,8 @@ export async function startStage(opts: { port?: number; stepMs?: number } = {}):
   // The hub only sends prompts to sessions whose folder exists. Create the empty demo folders; remove on close
   // only the ones created here, and only while still empty.
   const created: string[] = [];
-  for (const dir of ["C:/demo", ...SCENARIO.map((s) => s.cwd)]) {
+  // Outside Windows "C:/demo" is a relative path whose parent "C:" has to be made first (CI runs on Linux).
+  for (const dir of [...(process.platform === "win32" ? [] : ["C:"]), "C:/demo", ...SCENARIO.map((s) => s.cwd)]) {
     if (existsSync(dir)) continue;
     mkdirSync(dir);
     created.push(dir);

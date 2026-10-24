@@ -1,6 +1,6 @@
 // Sessions extension checks (npm run test:sessions): transcripts, prompts, permission asks and the
 // security rules around them. A real server and client; Claude itself is replaced by a scripted runner.
-import { appendFileSync, copyFileSync, mkdirSync, mkdtempSync, readFileSync, symlinkSync, utimesSync, writeFileSync } from "node:fs";
+import { appendFileSync, mkdirSync, mkdtempSync, readFileSync, symlinkSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -110,7 +110,9 @@ const project = join(root, "-tmp-demo");
 mkdirSync(project);
 const sessionId = "11111111-2222-3333-4444-555555555555";
 const transcript = join(project, `${sessionId}.jsonl`);
-copyFileSync(fixture, transcript);
+// The recorded transcript ran in /private/tmp/aaw-live-target, which does not exist here. Point it at a folder that
+// does, so the session is the same whether the hub learns its cwd from a hook or by discovering a fresh transcript.
+writeFileSync(transcript, readFileSync(fixture, "utf8").replaceAll('"cwd": "/private/tmp/aaw-live-target"', `"cwd": ${JSON.stringify(project)}`));
 {
   const outside = join(mkdtempSync(join(tmpdir(), "aaw-outside-")), "x.jsonl");
   writeFileSync(outside, "{}\n");
