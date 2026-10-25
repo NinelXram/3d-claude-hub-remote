@@ -4,6 +4,7 @@ Một văn phòng 3D trong trình duyệt phản chiếu các session **Claude C
 
 Video:
 
+https://github.com/user-attachments/assets/a6d59699-d317-4c7f-ad86-e24bd5469935
 
 
 *A 3D office in the browser that mirrors the Claude Code sessions running on your own machine. Six robots act out what Claude is doing; you can send prompts, answer permission asks and follow several sessions at once, from your phone over Tailscale. The sessions stay on your machine. The docs are in Vietnamese; the code, comments and app UI are in English.*
