@@ -36,6 +36,7 @@ Các lệnh lẻ:
 - `npm run capture -- --only phone-remote`: chỉ quay lại một clip.
 - `npm run studio`: mở Remotion Studio để xem và chỉnh từng cảnh.
 - `npm run stills`: xuất ảnh giữa mỗi câu chữ vào `out/stills/` để soát nhanh.
+- `npm run speed -- 1.4`: tạo bản nhanh hơn `out/3d-workflow-intro-vi-1.4x.mp4` (hình và tiếng cùng tăng tốc, giọng không bị cao lên). Tốc độ từ 0.5 đến 2.
 - `npm run stage`: chỉ bật server dàn dựng (cổng 8797) để tự xem app với dữ liệu mẫu.
 - `npm run test:stage`, `npm run test:guards`, `npm run typecheck`: các bài kiểm tra.
 

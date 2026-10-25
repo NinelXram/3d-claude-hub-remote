@@ -26,7 +26,8 @@
     "voice": "node --experimental-strip-types --no-warnings scripts/make-voice.ts",
     "sfx": "node --experimental-strip-types --no-warnings scripts/make-sfx.ts",
     "check:voice": "node --experimental-strip-types --no-warnings scripts/check-voice.ts",
-    "check:sound": "node --experimental-strip-types --no-warnings scripts/check-sound.ts"
+    "check:sound": "node --experimental-strip-types --no-warnings scripts/check-sound.ts",
+    "speed": "node --experimental-strip-types --no-warnings scripts/speed.ts"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.538",
